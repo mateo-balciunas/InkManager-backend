@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  ARTIST
+  CLIENT
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model User {
+  id String @id @default(uuid())
+  email String @unique
+  password String
+  role Role @default(CLIENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+artistProfile Artist? 
+clientProfile Client?
+}
+
+model Company {
+  id String @id @default(uuid())
+  name String
+  address String?
+  contact_info String?
+
+  artists Artist[]
+  appointments Appointment[]
+}
+
+model Artist {
+  id String @id @default(uuid())
+  userId String @unique
+  user User @relation(fields: [userId], references: [id])
+  companyId String?
+  company Company? @relation(fields: [companyId], references: [id])
+  bio String?
+  specialties String[]
+  portfolio Portfolio?
+  appointments Appointment[]
+}
+
+model Portfolio {
+  id String @id @default(uuid())
+  artistId String @unique
+  artist Artist @relation(fields: [artistId], references: [id])
+  items PortfolioItem[]
+}
+
+model PortfolioItem {
+  id String @id @default(uuid())
+  portfolioId String
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+  image_url String
+  description String?
+  createdAt DateTime @default(now())
+}
+
+model Client {
+  id String @id @default(uuid())
+  name String 
+  lastName String
+  userId String @unique
+  user User @relation(fields: [userId], references: [id])
+  phoneNumber String?
+  medicalNotes String?
+  appointments Appointment[]
+}
+
+model Appointment {
+  id String @id @default(uuid())
+  scheduleAt DateTime 
+  duration Int 
+  status AppointmentStatus @default(PENDING)
+  price Decimal? @db.Decimal(10, 2)
+  artistId String 
+  artist Artist @relation(fields: [artistId], references: [id])
+  clientId String
+  client Client @relation(fields: [clientId], references: [id])
+  companyId String
+  company Company @relation(fields: [companyId], references: [id])
+}
+
