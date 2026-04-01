@@ -12,4 +12,7 @@ export const createAppointmentSchema = z.object({
     companyId: z.uuid({ error: 'companyId does not match valid UUID format'}),
 });
 
+export const updateAppointmentSchema = createAppointmentSchema.partial();
+
 export type CreateAppointmentSchema = z.infer<typeof createAppointmentSchema>;
+export type UpdateAppointmentSchema = z.infer<typeof updateAppointmentSchema>;

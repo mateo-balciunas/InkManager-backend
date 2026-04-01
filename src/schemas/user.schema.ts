@@ -8,4 +8,7 @@ export const createUserSchema = z.object({
     role: z.enum(Role).optional().default(Role.CLIENT),
 });
 
+export const updateUserSchema = createUserSchema.partial();
+
 export type CreateUserSchema = z.infer<typeof createUserSchema>;
+export type UpdateUserSchema = z.infer<typeof updateUserSchema>;
