@@ -6,4 +6,7 @@ export const createPortfolioSchema = z.object({
     items: z.array(z.uuid()).min(1, 'A portfolio must have at least one item.'),
 });
 
+export const updatePortfolioSchema = createPortfolioSchema.partial();
+
 export type CreatePortfolioSchema = z.infer<typeof createPortfolioSchema>;
+export type UpdatePortfolioSchema = z.infer<typeof updatePortfolioSchema>;

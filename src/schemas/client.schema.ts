@@ -10,4 +10,7 @@ export const createClientSchema = z.object({
     appointments: z.array(z.uuid()),
 });
 
+export const updateClientSchema = createClientSchema.partial();
+
 export type CreateClientSchema = z.infer<typeof createClientSchema>;
+export type UpdateClientSchema = z.infer<typeof updateClientSchema>;

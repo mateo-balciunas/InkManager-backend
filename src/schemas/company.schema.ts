@@ -9,4 +9,7 @@ export const createCompanySchema = z.object({
     appointments: z.array(z.uuid()).default([]),
 });
 
+export const updateCompany = createCompanySchema.partial();
+
 export type CreateCompanySchema = z.infer<typeof createCompanySchema>;
+export type UpdateCompanySchema = z.infer<typeof updateCompany>;

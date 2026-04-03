@@ -1,7 +1,5 @@
 import prisma from "../config/db.js";
-import { Request, Response, NextFunction } from "express";
 import { CreateAppointmentSchema, UpdateAppointmentSchema } from "../schemas/appointment.schema.js";
-import { dmmfToRuntimeDataModel } from "@prisma/client/runtime/library";
 
 const appointmentSelect = {
     id: true,
@@ -19,7 +17,13 @@ export class Appointment {
     async create(data: CreateAppointmentSchema) {
         return await prisma.appointment.create({
             data: {
-                ...data
+                scheduleAt: new Date(data.scheduleAt),
+                duration: data.duration,
+                status: data.status,
+                price: data.price,
+                artistId: data.artistId,
+                clientId: data.clientId,
+                companyId: data.companyId
             },
             select: appointmentSelect
         });
@@ -41,46 +45,43 @@ export class Appointment {
     }
 
     async findByArtistId( artistId: string ) {
-        await prisma.appointment.findMany({
+        return await prisma.appointment.findMany({
             where: { artistId },
             select: appointmentSelect
         });
     }
 
     async findByCompanyId( companyId: string ) {
-        await prisma.appointment.findMany({
+        return await prisma.appointment.findMany({
             where: { companyId },
             select: appointmentSelect
         });
     }
 
+    //Update appointment
+    async updateAppointment( id: string, data: UpdateAppointmentSchema) {
+        const updateData: any = {};
+        
+        if( data.scheduleAt ){
+            updateData.scheduleAt = new Date(data.scheduleAt);
+        }
+        if( data.duration ) updateData.duration = data.duration;
+        if( data.status ) updateData.status = data.status;
+        if( data.price ) updateData.price = data.price;
+
+        return await prisma.appointment.update({
+            where: { id },
+            data: updateData,
+            select: appointmentSelect
+        });
+    }
+
+    //Delete appointment
     async deleteAppointment( id: string ) {
         return await prisma.appointment.delete({
             where: { id },
             select: appointmentSelect
         })
-    }
-
-    async updateAppointment( id: string, data: UpdateAppointmentSchema) {
-        const updateData: any = { ...data };
-        
-        if( data.scheduleAt ){
-            updateData.scheduleAt = new Date(data.scheduleAt);
-        }
-
-        return await prisma.appointment.update({
-            where: { id },
-            data: updateData,
-            select: {
-                id: true,
-                scheduleAt: true,
-                duration: true,
-                status: true,
-                price: true
-            }
-        });
-
-
     }
 
 }
