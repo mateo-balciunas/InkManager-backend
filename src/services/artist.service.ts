@@ -9,7 +9,7 @@ const artistSelect = {
     specialties: true
 }
 
-export class Artist {
+export class ArtistService {
 
     //Create Artist
     async create( data: CreateArtistSchema ) {

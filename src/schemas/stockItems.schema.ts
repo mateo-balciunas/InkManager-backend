@@ -4,11 +4,11 @@ export const createStockItemSchema = z.object({
     id: z.uuid("id does not match UUID format"),
     name: z.string(),
     description: z.string().optional(),
-    brand: z.string().optional(),
+    brand: z.string(),
     price: z.number(),
     quantity: z.number(),
-    companyId: z.uuid("companyId does not match UUID format").optional(),
-    artistId: z.uuid("artistId does not match UUID format").optional(),
+    companyId: z.uuid("companyId does not match UUID format"),
+    artistId: z.uuid("artistId does not match UUID format"),
 });
 
 export const updateStockItemSchema = createStockItemSchema.partial();

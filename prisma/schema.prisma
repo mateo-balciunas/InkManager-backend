@@ -46,6 +46,7 @@ model Company {
 
   artists Artist[]
   appointments Appointment[]
+  stockItems StockItem[]
 }
 
 model Artist {
@@ -58,6 +59,7 @@ model Artist {
   specialties String[]
   portfolio Portfolio?
   appointments Appointment[]
+  stockItems StockItem[]
 }
 
 model Portfolio {
@@ -101,3 +103,15 @@ model Appointment {
   company Company @relation(fields: [companyId], references: [id])
 }
 
+model StockItem {
+  id String @id @default(uuid())
+  name String 
+  description String?
+  brand String
+  price Decimal? @db.Decimal(10, 2)
+  quantity Int
+  artistId String
+  artist Artist @relation(fields: [artistId], references: [id])
+  companyId String
+  company Company @relation(fields: [companyId], references: [id])
+}

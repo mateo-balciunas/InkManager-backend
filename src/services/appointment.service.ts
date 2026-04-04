@@ -11,7 +11,7 @@ const appointmentSelect = {
     clientId: true,
     companyId: true
 }
-export class Appointment {
+export class AppointmentService {
 
     //CREATE APPOINTMENT
     async create(data: CreateAppointmentSchema) {

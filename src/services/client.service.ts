@@ -10,7 +10,7 @@ const clientSelect = {
     medicalNotes: true
 }
 
-export class Client {
+export class ClientService {
 
     //Create client
     async create( data: CreateClientSchema ) {

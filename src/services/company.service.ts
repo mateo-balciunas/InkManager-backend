@@ -8,7 +8,7 @@ const companySelect = {
     contact_info: true
 }
 
-export class Company {
+export class CompanyService {
 
     //Create company
     async create( data: CreateCompanySchema ) {

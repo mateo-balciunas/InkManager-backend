@@ -1,7 +1,7 @@
 import prisma from "../config/db.js";
 import { CreatePortfolioItemSchema, UpdatePortfolioItemSchema } from "../schemas/portfolio-items.schema.js";
 
-export class PortfolioItem {
+export class PortfolioItemService {
 
     //Create Item
     async create( data: CreatePortfolioItemSchema ) {
@@ -12,6 +12,30 @@ export class PortfolioItem {
                 description: data.description ?? null
             }
         });
+    }
+
+    //Get all items
+    async findAll(){
+        return await prisma.portfolioItem.findMany();
+    }
+
+    //Find by Id
+    async findById ( id: string ){
+        return await prisma.portfolioItem.findUnique({
+            where: { id }
+        });
+    }
+
+    //Find by artistId
+    async findByArtistId( artistId: string ){
+        return await prisma.portfolioItem.findMany({
+            where: { 
+                portfolio:
+                {
+                    artistId: artistId
+                }
+            }
+        })
     }
 
     //Update Item
