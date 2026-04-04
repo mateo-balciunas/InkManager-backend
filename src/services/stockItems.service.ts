@@ -25,7 +25,7 @@ export class StockItemService {
 
     async findById( id: string ){
         return await prisma.stockItem.findUnique({
-            where: { id }
+            where:{ id }
         });
     }
 

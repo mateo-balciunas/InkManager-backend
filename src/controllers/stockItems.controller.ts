@@ -20,7 +20,7 @@ export class StockItemsController {
     //Read
     // Get all items, get items by id, get items by artistId
     async getAll( _req: Request, res: Response, next: NextFunction ){
-        try {
+        try{
             const items = await stockItemService.findAll();
             return res.json({ status: "success", data: { items }});
         } catch( error ){

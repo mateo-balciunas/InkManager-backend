@@ -63,7 +63,7 @@ export class UserController {
         try {
             const { id } = req.params;
             if( !id || typeof id !== "string") {
-                return res.status(400).json({ status: "error", message: "Invalid ID"});)
+                return res.status(400).json({ status: "error", message: "Invalid ID"});
             }
             await userService.deleteUser( id );
             res.status(204).send();
