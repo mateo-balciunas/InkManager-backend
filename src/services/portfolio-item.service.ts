@@ -8,7 +8,7 @@ export class PortfolioItemService {
         return await prisma.portfolioItem.create({
             data: {
                 portfolioId: data.portfolioId,
-                imageUrl: data.imageUrl,
+                image_url: data.imageUrl,
                 description: data.description ?? null
             }
         });

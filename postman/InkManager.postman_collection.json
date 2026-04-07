@@ -1,0 +1,1001 @@
+{
+  "info": {
+    "_postman_id": "79f6ecde-bae9-4739-ab07-e3ab87112712",
+    "name": "InkManager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53421110",
+    "_collection_link": "https://go.postman.co/collection/53421110-79f6ecde-bae9-4739-ab07-e3ab87112712?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"artist2@test.com\",\n    \"password\": \"12345678\",\n    \"role\": \"ARTIST\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}users",
+              "host": [
+                "{{baseUrl}}users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"mateo@test.com\",\n    \"password\": \"12345678\",\n    \"role\": \"ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}users",
+              "host": [
+                "{{baseUrl}}users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOne",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"mateo@test.com\",\n    \"password\": \"12345678\",\n    \"role\": \"ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}users/{{uuid}}",
+              "host": [
+                "{{baseUrl}}users"
+              ],
+              "path": [
+                "{{uuid}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"password\": \"987654321\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}users/{{uuid}}",
+              "host": [
+                "{{baseUrl}}users"
+              ],
+              "path": [
+                "{{uuid}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}users/12933e82-819a-401a-bd70-1591e8bb0bfd",
+              "host": [
+                "{{baseUrl}}users"
+              ],
+              "path": [
+                "12933e82-819a-401a-bd70-1591e8bb0bfd"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "appointment",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"scheduleAt\": \"07/04/2026\",\n    \"duration\": 1,\n    \"status\": \"PENDING\",\n    \"price\": 150,\n    \"artistId\": \"706c9e58-a1fe-4d02-840a-ce423e331b54\",\n    \"clientId\": \"4368e451-287e-482a-b7ea-51dcc0f621a9\",\n    \"companyId\": \"0b76f42e-3311-48d9-a8be-0e963d42eb46\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}appointments",
+              "host": [
+                "{{baseUrl}}appointments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}appointments",
+              "host": [
+                "{{baseUrl}}appointments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}appointments/c1310e7f-8c5b-4e4a-9080-bc3e4d100b13",
+              "host": [
+                "{{baseUrl}}appointments"
+              ],
+              "path": [
+                "c1310e7f-8c5b-4e4a-9080-bc3e4d100b13"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getByArtistId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}appointments/artist/706c9e58-a1fe-4d02-840a-ce423e331b54",
+              "host": [
+                "{{baseUrl}}appointments"
+              ],
+              "path": [
+                "artist",
+                "706c9e58-a1fe-4d02-840a-ce423e331b54"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getByCompany",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}appointments/company/0b76f42e-3311-48d9-a8be-0e963d42eb46",
+              "host": [
+                "{{baseUrl}}appointments"
+              ],
+              "path": [
+                "company",
+                "0b76f42e-3311-48d9-a8be-0e963d42eb46"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"scheduleAt\": \"08/04/2026\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}appointments/c1310e7f-8c5b-4e4a-9080-bc3e4d100b13",
+              "host": [
+                "{{baseUrl}}appointments"
+              ],
+              "path": [
+                "c1310e7f-8c5b-4e4a-9080-bc3e4d100b13"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}appointments/c1310e7f-8c5b-4e4a-9080-bc3e4d100b13",
+              "host": [
+                "{{baseUrl}}appointments"
+              ],
+              "path": [
+                "c1310e7f-8c5b-4e4a-9080-bc3e4d100b13"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "client",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Client2\",\n    \"lastName\": \"Test2\",\n    \"userId\": \"809a07be-db45-4e76-b647-65c7b6348965\",\n    \"phoneNumber\": \"1122334455\",\n    \"medicalNotes\": \"None\"  \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}clients",
+              "host": [
+                "{{baseUrl}}clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}clients",
+              "host": [
+                "{{baseUrl}}clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOne",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}clients/5896a9d2-d84c-4c4d-88bb-253531565214",
+              "host": [
+                "{{baseUrl}}clients"
+              ],
+              "path": [
+                "5896a9d2-d84c-4c4d-88bb-253531565214"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getByUser",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}clients/user/df1927b2-a0a4-4cb9-b93a-7483e3879a18",
+              "host": [
+                "{{baseUrl}}clients"
+              ],
+              "path": [
+                "user",
+                "df1927b2-a0a4-4cb9-b93a-7483e3879a18"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"medicalNotes\": \"Update medical notes\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}clients/5896a9d2-d84c-4c4d-88bb-253531565214",
+              "host": [
+                "{{baseUrl}}clients"
+              ],
+              "path": [
+                "5896a9d2-d84c-4c4d-88bb-253531565214"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}clients/5896a9d2-d84c-4c4d-88bb-253531565214",
+              "host": [
+                "{{baseUrl}}clients"
+              ],
+              "path": [
+                "5896a9d2-d84c-4c4d-88bb-253531565214"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "artist",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": \"df1927b2-a0a4-4cb9-b93a-7483e3879a18\",\n    \"companyId\": \"0b76f42e-3311-48d9-a8be-0e963d42eb46\",\n    \"bio\": \"Bio test for artist\",\n    \"specialties\": [\"Realismo\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}artists",
+              "host": [
+                "{{baseUrl}}artists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}artists",
+              "host": [
+                "{{baseUrl}}artists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOne",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}artists/706c9e58-a1fe-4d02-840a-ce423e331b54",
+              "host": [
+                "{{baseUrl}}artists"
+              ],
+              "path": [
+                "706c9e58-a1fe-4d02-840a-ce423e331b54"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getByUser",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}artists/user/24c45433-1c92-4b85-ba86-d90005202fcb",
+              "host": [
+                "{{baseUrl}}artists"
+              ],
+              "path": [
+                "user",
+                "24c45433-1c92-4b85-ba86-d90005202fcb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getByCompany",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}artists/company/0b76f42e-3311-48d9-a8be-0e963d42eb46",
+              "host": [
+                "{{baseUrl}}artists"
+              ],
+              "path": [
+                "company",
+                "0b76f42e-3311-48d9-a8be-0e963d42eb46"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"bio\": \"Bio updated for test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}artists/706c9e58-a1fe-4d02-840a-ce423e331b54",
+              "host": [
+                "{{baseUrl}}artists"
+              ],
+              "path": [
+                "706c9e58-a1fe-4d02-840a-ce423e331b54"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}artists/d6d0a063-a5f5-481f-8c68-7b9e9f75f133",
+              "host": [
+                "{{baseUrl}}artists"
+              ],
+              "path": [
+                "d6d0a063-a5f5-481f-8c68-7b9e9f75f133"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "company",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"TestCompany\",\n    \"address\": \"Avenida 321\",\n    \"contact_info\": \"000111222333\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}companies",
+              "host": [
+                "{{baseUrl}}companies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}companies",
+              "host": [
+                "{{baseUrl}}companies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOne",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}companies/0b76f42e-3311-48d9-a8be-0e963d42eb46",
+              "host": [
+                "{{baseUrl}}companies"
+              ],
+              "path": [
+                "0b76f42e-3311-48d9-a8be-0e963d42eb46"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"NewCompany\",\n    \"contact_info\": \"9988776655\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}companies/0b76f42e-3311-48d9-a8be-0e963d42eb46",
+              "host": [
+                "{{baseUrl}}companies"
+              ],
+              "path": [
+                "0b76f42e-3311-48d9-a8be-0e963d42eb46"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}companies/de7ca800-0526-4f50-a7c7-e83296d0dc8e",
+              "host": [
+                "{{baseUrl}}companies"
+              ],
+              "path": [
+                "de7ca800-0526-4f50-a7c7-e83296d0dc8e"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "portfolio",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"artistId\": \"706c9e58-a1fe-4d02-840a-ce423e331b54\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}portfolios",
+              "host": [
+                "{{baseUrl}}portfolios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}portfolios",
+              "host": [
+                "{{baseUrl}}portfolios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}portfolios/930c58f5-9c2c-42ab-ae7e-425d47780d82",
+              "host": [
+                "{{baseUrl}}portfolios"
+              ],
+              "path": [
+                "930c58f5-9c2c-42ab-ae7e-425d47780d82"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getByArtist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}portfolios/artist/706c9e58-a1fe-4d02-840a-ce423e331b54",
+              "host": [
+                "{{baseUrl}}portfolios"
+              ],
+              "path": [
+                "artist",
+                "706c9e58-a1fe-4d02-840a-ce423e331b54"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/portfolios/930c58f5-9c2c-42ab-ae7e-425d47780d82",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "portfolios",
+                "930c58f5-9c2c-42ab-ae7e-425d47780d82"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/portfolios/930c58f5-9c2c-42ab-ae7e-425d47780d82",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "portfolios",
+                "930c58f5-9c2c-42ab-ae7e-425d47780d82"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "portfolioItem",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"portfolioId\": \"930c58f5-9c2c-42ab-ae7e-425d47780d82\",\n    \"imageUrl\": \"https://tu-almacenamiento.com/foto3.jpg\",\n    \"description\": \"Second image fake\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}items",
+              "host": [
+                "{{baseUrl}}items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}items",
+              "host": [
+                "{{baseUrl}}items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}items/b558504b-00ab-474f-a3e9-d1b9167e66fe",
+              "host": [
+                "{{baseUrl}}items"
+              ],
+              "path": [
+                "b558504b-00ab-474f-a3e9-d1b9167e66fe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"description\": \"Updated description\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}items/b558504b-00ab-474f-a3e9-d1b9167e66fe",
+              "host": [
+                "{{baseUrl}}items"
+              ],
+              "path": [
+                "b558504b-00ab-474f-a3e9-d1b9167e66fe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/items/b558504b-00ab-474f-a3e9-d1b9167e66fe",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "items",
+                "b558504b-00ab-474f-a3e9-d1b9167e66fe"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "stockItem",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Item 1\",\n    \"description\": \"Item 1 description\",\n    \"brand\": \"No brand\",\n    \"price\": 50.25,\n    \"quantity\": 4,\n    \"companyId\": \"0b76f42e-3311-48d9-a8be-0e963d42eb46\",\n    \"artistId\": \"706c9e58-a1fe-4d02-840a-ce423e331b54\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}stock",
+              "host": [
+                "{{baseUrl}}stock"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}stock",
+              "host": [
+                "{{baseUrl}}stock"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}stock/c980de69-cf79-46de-b00d-c7220d855cdf",
+              "host": [
+                "{{baseUrl}}stock"
+              ],
+              "path": [
+                "c980de69-cf79-46de-b00d-c7220d855cdf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getByArtist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}stock/artist/706c9e58-a1fe-4d02-840a-ce423e331b54",
+              "host": [
+                "{{baseUrl}}stock"
+              ],
+              "path": [
+                "artist",
+                "706c9e58-a1fe-4d02-840a-ce423e331b54"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"description\": \"updated description\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}stock/c980de69-cf79-46de-b00d-c7220d855cdf",
+              "host": [
+                "{{baseUrl}}stock"
+              ],
+              "path": [
+                "c980de69-cf79-46de-b00d-c7220d855cdf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}stock/c980de69-cf79-46de-b00d-c7220d855cdf",
+              "host": [
+                "{{baseUrl}}stock"
+              ],
+              "path": [
+                "c980de69-cf79-46de-b00d-c7220d855cdf"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "uuid",
+      "value": ""
+    }
+  ]
+}

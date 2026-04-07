@@ -3,7 +3,7 @@ import { AppointmentStatus } from "@prisma/client";
 
 export const createAppointmentSchema = z.object({
     id: z.uuid({ error: 'ID does not match valid UUID format'}),
-    scheduleAt: z.iso.datetime(),
+    scheduleAt: z.iso.date(),
     duration: z.int(),
     status: z.enum(AppointmentStatus).default("PENDING"),
     price: z.number(),

@@ -5,6 +5,7 @@ import helmet from "helmet";
 
 import { corsOptions } from "./config/cors.config.js";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler.middleware.js";
+import rootRouter from "./routes/routes.js";
 
 //Initialize dotenv to import env variables from .env file
 dotenv.config();
@@ -20,9 +21,7 @@ app.use(helmet());
 app.use(express.json());
 
 //Simple route to test the server
-app.get("/", (_req, res) => {
-    res.send("Hello World!");
-});
+app.use("/api", rootRouter);
 
 app.use(globalErrorHandler);
 
