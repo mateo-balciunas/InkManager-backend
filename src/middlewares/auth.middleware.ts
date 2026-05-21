@@ -8,7 +8,10 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
         return res.status(401).json({ message: "Unauthorized" });
     }
 
-    const token = authHeader.split(" ")[1];
+    const token = authHeader?.split(" ")[1];
+    if( !token ){
+        return res.status(401).json({ message: "Unauthorized: Token missing?" });
+    }
 
     try{
         const decoded = verifyToken( token );

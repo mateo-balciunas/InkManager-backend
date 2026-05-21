@@ -58,16 +58,23 @@ export class AppointmentService {
         });
     }
 
+    async findByClientId( clientId: string ) {
+        return await prisma.appointment.findMany({
+            where: { clientId },
+            select: appointmentSelect
+        });
+    }
+
     //Update appointment
     async updateAppointment( id: string, data: UpdateAppointmentSchema) {
         const updateData: any = {};
         
-        if( data.scheduleAt ){
+        if( data.scheduleAt !== undefined ){
             updateData.scheduleAt = new Date(data.scheduleAt);
         }
-        if( data.duration ) updateData.duration = data.duration;
-        if( data.status ) updateData.status = data.status;
-        if( data.price ) updateData.price = data.price;
+        if( data.duration !== undefined ) updateData.duration = data.duration;
+        if( data.status !== undefined ) updateData.status = data.status;
+        if( data.price !== undefined ) updateData.price = data.price;
 
         return await prisma.appointment.update({
             where: { id },
