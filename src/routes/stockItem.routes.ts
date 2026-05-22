@@ -11,5 +11,6 @@ routerStockItem.get("/:id", stockItemController.getItemById);
 routerStockItem.get("/artist/:id", stockItemController.getByArtistId);
 routerStockItem.put("/:id", stockItemController.updateItem);
 routerStockItem.delete("/:id", stockItemController.deleteItem);
+routerStockItem.patch("/:id", stockItemController.decrementStock);
 
 export default routerStockItem;

@@ -59,4 +59,24 @@ export class StockItemService {
             where: { id }
         });
     }
+
+    //Reduce quantity of an item
+    async decrementStock(id: string, amount: number ) {
+        const item = await prisma.stockItem.findUnique({
+            where: { id }
+        });
+
+        if (!item || item.quantity < amount) {
+            throw new Error(`Stock insuficiente o producto no encontrado con el ID: ${id}`);
+        }
+
+        return await prisma.stockItem.update({
+            where: { id },
+            data: {
+                quantity: {
+                    decrement: amount,
+                }
+            }
+        })
+    }
 }

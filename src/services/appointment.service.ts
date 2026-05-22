@@ -15,6 +15,21 @@ export class AppointmentService {
 
     //CREATE APPOINTMENT
     async create(data: CreateAppointmentSchema) {
+
+        const start = new Date(data.scheduleAt);
+        const end = new Date(start.getTime() + data.duration * 60000);
+
+        const overlap = await prisma.appointment.findFirst({
+            where: {
+                artistId: data.artistId,
+                status: {not: 'CANCELLED'},
+                scheduleAt:{ lt: end },
+            }
+        });
+
+        if (overlap) {
+            throw new Error("El artista ya tiene una cita programada en este horario.");
+        }
         return await prisma.appointment.create({
             data: {
                 scheduleAt: new Date(data.scheduleAt),

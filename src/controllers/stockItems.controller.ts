@@ -84,4 +84,28 @@ export class StockItemsController {
             next( error );
         }
     }
+
+    //Decrement stock items after appointment
+    async decrementStock( req: Request, res: Response, next: NextFunction ) {
+        try {
+            const { id , amount } = req.params;
+            if (!id || typeof id !== "string") {
+                return res.status(400).json({ status: "error", message: "Invalid ID" });
+            }
+
+            // Asegurarse de que 'amount' es un string antes de pasarlo a parseInt
+            if (typeof amount !== "string") {
+                return res.status(400).json({ status: "error", message: "Invalid amount parameter type" });
+            }
+            const parsedAmount = parseInt(amount); // Convertir a número
+            if (isNaN(parsedAmount) || parsedAmount <= 0) { // Validar si es un número válido y mayor que 0
+                return res.status(400).json({ status: "error", message: "Invalid amount" });
+            }
+
+            await stockItemService.decrementStock( id, parsedAmount );
+            return res.status(204).send();
+        } catch (error) {
+            next( error );
+        }
+    }
 } 
